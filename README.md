@@ -1,8 +1,9 @@
 Проект React Shop
 
 ## Описание проекта:
-
 Магазин для покупки товара.
+
+![react-shop](https://user-images.githubusercontent.com/93434868/162877945-381ca1cf-0c66-494a-8bda-1ef7c35d531f.gif)
 
 ## В проекте используется:
 
