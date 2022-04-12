@@ -3,6 +3,7 @@ import { Preloader } from './Preloader';
 import { GoodsList } from './GoodsList';
 import { Cart } from './Cart';
 import { BasketList } from './BasketList';
+import Alert from './Alert';
 
 function Shop() {
   const [goods, setGoods] = useState([]);
@@ -10,6 +11,7 @@ function Shop() {
   const [order, setOrder] = useState([]);
   // видимость корзины
   const [isBasketShow, setBasketShow] = useState(false);
+  const [alertName, setAlertName] = useState('');
 
   // добавление товара в корзину
   const addToBasket = (item) => {
@@ -35,6 +37,8 @@ function Shop() {
       });
       setOrder(newOrder);
     }
+    //
+    setAlertName(item.displayName);
   };
 
   // удаление товара из корзины
@@ -78,6 +82,11 @@ function Shop() {
     setBasketShow(!isBasketShow);
   };
 
+  // всплывающая подсказка при добавлении товара в корзину
+  const closeAlert = () => {
+    setAlertName('');
+  };
+
   useEffect(function getGoods() {
     fetch('https://fortniteapi.io/v2/shop?lang=ru', {
       headers: { Authorization: '918513bc-2bcf8d4b-011309dd-c81a1174' },
@@ -106,6 +115,7 @@ function Shop() {
           decQuantity={decQuantity}
         />
       )}
+      {alertName && <Alert name={alertName} closeAlert={closeAlert} />}
     </main>
   );
 }
